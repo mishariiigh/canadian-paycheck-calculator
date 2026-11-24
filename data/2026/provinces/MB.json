@@ -1,0 +1,35 @@
+{
+  "taxYear": 2026,
+  "province": "MB",
+  "provinceName": "Manitoba",
+  "effectiveDate": "2026-01-01",
+  "lastVerified": "2026-11-24",
+  "sources": [
+    {
+      "name": "TaxTips.ca — Manitoba 2026 Tax Rates & Tax Brackets (confirmed to CRA information)",
+      "url": "https://www.taxtips.ca/taxrates/mb.htm"
+    }
+  ],
+  "taxBrackets": [
+    {
+      "upTo": 47000,
+      "rate": 0.108
+    },
+    {
+      "upTo": 100000,
+      "rate": 0.1275
+    },
+    {
+      "upTo": null,
+      "rate": 0.174
+    }
+  ],
+  "basicPersonalAmount": {
+    "amount": 15780,
+    "creditRate": 0.108
+  },
+  "indexationFactor": null,
+  "notes": [
+    "Indexation frozen at 2024 levels (Budget 2025); BPA not increased for 2026."
+  ]
+}

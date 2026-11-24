@@ -1,0 +1,43 @@
+{
+  "taxYear": 2026,
+  "province": "NS",
+  "provinceName": "Nova Scotia",
+  "effectiveDate": "2026-01-01",
+  "lastVerified": "2026-11-24",
+  "sources": [
+    {
+      "name": "TaxTips.ca — Nova Scotia 2026 Tax Rates & Tax Brackets (confirmed to CRA information)",
+      "url": "https://www.taxtips.ca/taxrates/ns.htm"
+    }
+  ],
+  "taxBrackets": [
+    {
+      "upTo": 30995,
+      "rate": 0.0879
+    },
+    {
+      "upTo": 61991,
+      "rate": 0.1495
+    },
+    {
+      "upTo": 97417,
+      "rate": 0.1667
+    },
+    {
+      "upTo": 157124,
+      "rate": 0.175
+    },
+    {
+      "upTo": null,
+      "rate": 0.21
+    }
+  ],
+  "basicPersonalAmount": {
+    "amount": 11932,
+    "creditRate": 0.0879
+  },
+  "indexationFactor": 1.016,
+  "notes": [
+    "NS indexes using 12-month CPI average ending August (2026 factor 1.016); most personal tax credits not indexed."
+  ]
+}

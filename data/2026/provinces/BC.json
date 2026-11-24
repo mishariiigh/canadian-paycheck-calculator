@@ -1,0 +1,51 @@
+{
+  "taxYear": 2026,
+  "province": "BC",
+  "provinceName": "British Columbia",
+  "effectiveDate": "2026-01-01",
+  "lastVerified": "2026-11-24",
+  "sources": [
+    {
+      "name": "TaxTips.ca — British Columbia 2026 Tax Rates & Tax Brackets (confirmed to CRA information)",
+      "url": "https://www.taxtips.ca/taxrates/bc.htm"
+    }
+  ],
+  "taxBrackets": [
+    {
+      "upTo": 50363,
+      "rate": 0.056
+    },
+    {
+      "upTo": 100728,
+      "rate": 0.077
+    },
+    {
+      "upTo": 115648,
+      "rate": 0.105
+    },
+    {
+      "upTo": 140430,
+      "rate": 0.1229
+    },
+    {
+      "upTo": 190405,
+      "rate": 0.147
+    },
+    {
+      "upTo": 265545,
+      "rate": 0.168
+    },
+    {
+      "upTo": null,
+      "rate": 0.205
+    }
+  ],
+  "basicPersonalAmount": {
+    "amount": 13216,
+    "creditRate": 0.056
+  },
+  "indexationFactor": null,
+  "notes": [
+    "Lowest bracket rate raised from 5.06% to 5.60% for 2026 by BC 2026 Budget; no 2026 indexation."
+  ]
+}

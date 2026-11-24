@@ -1,0 +1,36 @@
+{
+  "taxYear": 2026,
+  "jurisdiction": "federal",
+  "effectiveDate": "2026-01-01",
+  "lastVerified": "2026-11-24",
+  "sources": [
+    {
+      "name": "CRA — Tax rates and income brackets for individuals (2026 federal income tax rates)",
+      "url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/canadian-income-tax-rates-individuals-current-previous-years.html"
+    },
+    {
+      "name": "TaxTips.ca — Canadian Tax Rates (federal 2026), confirmed to CRA information",
+      "url": "https://www.taxtips.ca/taxrates/canada.htm"
+    }
+  ],
+  "taxBrackets": [
+    { "upTo": 58523, "rate": 0.14 },
+    { "upTo": 117045, "rate": 0.205 },
+    { "upTo": 181440, "rate": 0.26 },
+    { "upTo": 258482, "rate": 0.29 },
+    { "upTo": null, "rate": 0.33 }
+  ],
+  "basicPersonalAmount": {
+    "minimum": 14829,
+    "maximum": 16452,
+    "creditRate": 0.14,
+    "phaseOutStartNetIncome": 181440,
+    "phaseOutEndNetIncome": 258482,
+    "note": "Maximum BPA for net income <= 181,440; reduced straight-line to minimum for net income >= 258,482."
+  },
+  "otherCredits": {
+    "employmentAmount": 1561,
+    "cppEiCreditBase": { "type": "actual", "note": "Actual CPP/QPP base+1st-additional and EI premiums are non-refundable credits (no CPP2/QPP2 credit)." }
+  },
+  "indexationFactor": 1.02
+}

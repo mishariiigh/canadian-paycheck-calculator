@@ -1,0 +1,43 @@
+{
+  "taxYear": 2026,
+  "province": "YT",
+  "provinceName": "Yukon",
+  "effectiveDate": "2026-01-01",
+  "lastVerified": "2026-11-24",
+  "sources": [
+    {
+      "name": "TaxTips.ca — Yukon 2026 Tax Rates & Tax Brackets (confirmed to CRA information)",
+      "url": "https://www.taxtips.ca/taxrates/yt.htm"
+    }
+  ],
+  "taxBrackets": [
+    {
+      "upTo": 58523,
+      "rate": 0.064
+    },
+    {
+      "upTo": 117045,
+      "rate": 0.09
+    },
+    {
+      "upTo": 181440,
+      "rate": 0.109
+    },
+    {
+      "upTo": 500000,
+      "rate": 0.128
+    },
+    {
+      "upTo": null,
+      "rate": 0.15
+    }
+  ],
+  "basicPersonalAmount": {
+    "amount": 16452,
+    "creditRate": 0.064
+  },
+  "indexationFactor": 1.02,
+  "notes": [
+    "YT mirrors federal brackets/BPA structure; YT BPA enhanced like federal (max $16,452 for net income <= 181,440)."
+  ]
+}

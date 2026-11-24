@@ -1,0 +1,55 @@
+{
+  "taxYear": 2026,
+  "province": "NL",
+  "provinceName": "Newfoundland and Labrador",
+  "effectiveDate": "2026-01-01",
+  "lastVerified": "2026-11-24",
+  "sources": [
+    {
+      "name": "TaxTips.ca — Newfoundland and Labrador 2026 Tax Rates & Tax Brackets (confirmed to CRA information)",
+      "url": "https://www.taxtips.ca/taxrates/nl.htm"
+    }
+  ],
+  "taxBrackets": [
+    {
+      "upTo": 44678,
+      "rate": 0.087
+    },
+    {
+      "upTo": 89354,
+      "rate": 0.145
+    },
+    {
+      "upTo": 159528,
+      "rate": 0.158
+    },
+    {
+      "upTo": 223340,
+      "rate": 0.178
+    },
+    {
+      "upTo": 285319,
+      "rate": 0.198
+    },
+    {
+      "upTo": 570638,
+      "rate": 0.208
+    },
+    {
+      "upTo": 1141275,
+      "rate": 0.213
+    },
+    {
+      "upTo": null,
+      "rate": 0.218
+    }
+  ],
+  "basicPersonalAmount": {
+    "amount": 15000,
+    "creditRate": 0.087
+  },
+  "indexationFactor": 1.033,
+  "notes": [
+    "NL 2026 Budget raised the basic personal amount to $15,000; the indexed 2026 BPA per TaxTips.ca is $13,094 before the budget measure. Using $15,000 per NL Budget 2026 highlight."
+  ]
+}

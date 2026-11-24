@@ -1,0 +1,32 @@
+{
+  "taxYear": 2026,
+  "province": "SK",
+  "provinceName": "Saskatchewan",
+  "effectiveDate": "2026-01-01",
+  "lastVerified": "2026-11-24",
+  "sources": [
+    {
+      "name": "TaxTips.ca — Saskatchewan 2026 Tax Rates & Tax Brackets (confirmed to CRA information)",
+      "url": "https://www.taxtips.ca/taxrates/sk.htm"
+    }
+  ],
+  "taxBrackets": [
+    {
+      "upTo": 54532,
+      "rate": 0.105
+    },
+    {
+      "upTo": 155805,
+      "rate": 0.125
+    },
+    {
+      "upTo": null,
+      "rate": 0.145
+    }
+  ],
+  "basicPersonalAmount": {
+    "amount": 20381,
+    "creditRate": 0.105
+  },
+  "indexationFactor": 1.02
+}

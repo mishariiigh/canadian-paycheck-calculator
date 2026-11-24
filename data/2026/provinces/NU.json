@@ -1,0 +1,42 @@
+{
+  "taxYear": 2026,
+  "province": "NU",
+  "provinceName": "Nunavut",
+  "effectiveDate": "2026-01-01",
+  "lastVerified": "2026-11-24",
+  "sources": [
+    {
+      "name": "TaxTips.ca — Nunavut 2026 Tax Rates & Tax Brackets (confirmed to CRA information)",
+      "url": "https://www.taxtips.ca/taxrates/nu.htm"
+    }
+  ],
+  "taxBrackets": [
+    {
+      "upTo": 55801,
+      "rate": 0.04
+    },
+    {
+      "upTo": 111602,
+      "rate": 0.07
+    },
+    {
+      "upTo": 181439,
+      "rate": 0.09
+    },
+    {
+      "upTo": null,
+      "rate": 0.115
+    }
+  ],
+  "basicPersonalAmount": {
+    "amount": 19659,
+    "creditRate": 0.04
+  },
+  "indexationFactor": 1.02,
+  "payrollTax": {
+    "type": "employee",
+    "rate": 0.02,
+    "basis": "grossEmploymentIncome",
+    "note": "2% Nunavut payroll tax withheld from employee gross pay."
+  }
+}

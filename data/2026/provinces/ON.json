@@ -1,0 +1,119 @@
+{
+  "taxYear": 2026,
+  "province": "ON",
+  "provinceName": "Ontario",
+  "effectiveDate": "2026-01-01",
+  "lastVerified": "2026-11-24",
+  "sources": [
+    {
+      "name": "TaxTips.ca — Ontario 2026 Tax Rates & Tax Brackets (confirmed to CRA information)",
+      "url": "https://www.taxtips.ca/taxrates/on.htm"
+    },
+    {
+      "name": "Additional source",
+      "url": "https://www.taxtips.ca/ontax/ontario-health-premium.htm ; https://www.ontario.ca/page/health-premium"
+    }
+  ],
+  "taxBrackets": [
+    {
+      "upTo": 53891,
+      "rate": 0.0505
+    },
+    {
+      "upTo": 107785,
+      "rate": 0.0915
+    },
+    {
+      "upTo": 150000,
+      "rate": 0.1116
+    },
+    {
+      "upTo": 220000,
+      "rate": 0.1216
+    },
+    {
+      "upTo": null,
+      "rate": 0.1316
+    }
+  ],
+  "basicPersonalAmount": {
+    "amount": 12989,
+    "creditRate": 0.0505
+  },
+  "indexationFactor": 1.019,
+  "surtax": {
+    "tiers": [
+      {
+        "rate": 0.2,
+        "onTaxOver": 5818
+      },
+      {
+        "rate": 0.36,
+        "onTaxOver": 7446
+      }
+    ]
+  },
+  "healthPremium": {
+    "bands": [
+      {
+        "upTo": 20000,
+        "amount": 0
+      },
+      {
+        "upTo": 25000,
+        "amount": null,
+        "base": 0,
+        "rate": 0.06,
+        "over": 20000
+      },
+      {
+        "upTo": 36000,
+        "amount": 300
+      },
+      {
+        "upTo": 38500,
+        "amount": null,
+        "base": 300,
+        "rate": 0.06,
+        "over": 36000
+      },
+      {
+        "upTo": 48000,
+        "amount": 450
+      },
+      {
+        "upTo": 48600,
+        "amount": null,
+        "base": 450,
+        "rate": 0.25,
+        "over": 48000
+      },
+      {
+        "upTo": 72000,
+        "amount": 600
+      },
+      {
+        "upTo": 72600,
+        "amount": null,
+        "base": 600,
+        "rate": 0.25,
+        "over": 72000
+      },
+      {
+        "upTo": 200000,
+        "amount": 750
+      },
+      {
+        "upTo": 200600,
+        "amount": null,
+        "base": 750,
+        "rate": 0.25,
+        "over": 200000
+      },
+      {
+        "upTo": null,
+        "amount": 900
+      }
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "taxYear": 2026,
+  "province": "AB",
+  "provinceName": "Alberta",
+  "effectiveDate": "2026-01-01",
+  "lastVerified": "2026-11-24",
+  "sources": [
+    {
+      "name": "TaxTips.ca — Alberta 2026 Tax Rates & Tax Brackets (confirmed to CRA information)",
+      "url": "https://www.taxtips.ca/taxrates/ab.htm"
+    }
+  ],
+  "taxBrackets": [
+    {
+      "upTo": 61200,
+      "rate": 0.08
+    },
+    {
+      "upTo": 154259,
+      "rate": 0.1
+    },
+    {
+      "upTo": 185111,
+      "rate": 0.12
+    },
+    {
+      "upTo": 246813,
+      "rate": 0.13
+    },
+    {
+      "upTo": 370220,
+      "rate": 0.14
+    },
+    {
+      "upTo": null,
+      "rate": 0.15
+    }
+  ],
+  "basicPersonalAmount": {
+    "amount": 22769,
+    "creditRate": 0.08
+  },
+  "indexationFactor": 1.02,
+  "notes": [
+    "Indexation capped at 2% by Alberta Bill 32 (2024)."
+  ]
+}

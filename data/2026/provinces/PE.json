@@ -1,0 +1,47 @@
+{
+  "taxYear": 2026,
+  "province": "PE",
+  "provinceName": "Prince Edward Island",
+  "effectiveDate": "2026-01-01",
+  "lastVerified": "2026-11-24",
+  "sources": [
+    {
+      "name": "TaxTips.ca — Prince Edward Island 2026 Tax Rates & Tax Brackets (confirmed to CRA information)",
+      "url": "https://www.taxtips.ca/taxrates/pe.htm"
+    }
+  ],
+  "taxBrackets": [
+    {
+      "upTo": 33928,
+      "rate": 0.095
+    },
+    {
+      "upTo": 65820,
+      "rate": 0.1347
+    },
+    {
+      "upTo": 106890,
+      "rate": 0.166
+    },
+    {
+      "upTo": 142520,
+      "rate": 0.1762
+    },
+    {
+      "upTo": 200000,
+      "rate": 0.19
+    },
+    {
+      "upTo": null,
+      "rate": 0.2
+    }
+  ],
+  "basicPersonalAmount": {
+    "amount": 15000,
+    "creditRate": 0.095
+  },
+  "indexationFactor": null,
+  "notes": [
+    "PEI does not index brackets. New top bracket 20% over $200,000 effective January 1, 2026."
+  ]
+}

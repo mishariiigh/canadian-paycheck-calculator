@@ -1,0 +1,42 @@
+{
+  "taxYear": 2026,
+  "province": "NT",
+  "provinceName": "Northwest Territories",
+  "effectiveDate": "2026-01-01",
+  "lastVerified": "2026-11-24",
+  "sources": [
+    {
+      "name": "TaxTips.ca — Northwest Territories 2026 Tax Rates & Tax Brackets (confirmed to CRA information)",
+      "url": "https://www.taxtips.ca/taxrates/nt.htm"
+    }
+  ],
+  "taxBrackets": [
+    {
+      "upTo": 53003,
+      "rate": 0.059
+    },
+    {
+      "upTo": 106009,
+      "rate": 0.086
+    },
+    {
+      "upTo": 172346,
+      "rate": 0.122
+    },
+    {
+      "upTo": null,
+      "rate": 0.1405
+    }
+  ],
+  "basicPersonalAmount": {
+    "amount": 18198,
+    "creditRate": 0.059
+  },
+  "indexationFactor": 1.02,
+  "payrollTax": {
+    "type": "employee",
+    "rate": 0.02,
+    "basis": "grossEmploymentIncome",
+    "note": "2% NWT Payroll Tax withheld from employee gross pay (NWT Payroll Tax Act)."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "taxYear": 2026,
+  "province": "NB",
+  "provinceName": "New Brunswick",
+  "effectiveDate": "2026-01-01",
+  "lastVerified": "2026-11-24",
+  "sources": [
+    {
+      "name": "TaxTips.ca — New Brunswick 2026 Tax Rates & Tax Brackets (confirmed to CRA information)",
+      "url": "https://www.taxtips.ca/taxrates/nb.htm"
+    }
+  ],
+  "taxBrackets": [
+    {
+      "upTo": 52333,
+      "rate": 0.094
+    },
+    {
+      "upTo": 104666,
+      "rate": 0.14
+    },
+    {
+      "upTo": 193861,
+      "rate": 0.16
+    },
+    {
+      "upTo": null,
+      "rate": 0.195
+    }
+  ],
+  "basicPersonalAmount": {
+    "amount": 13664,
+    "creditRate": 0.094
+  },
+  "indexationFactor": 1.02
+}

@@ -1,0 +1,61 @@
+{
+  "taxYear": 2026,
+  "jurisdiction": "payroll",
+  "effectiveDate": "2026-01-01",
+  "lastVerified": "2026-11-24",
+  "sources": [
+    {
+      "name": "CRA — CPP contribution rates, maximums and exemptions",
+      "url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/canada-pension-plan-cpp/cpp-contribution-rates-maximums-exemptions.html"
+    },
+    {
+      "name": "CRA — CPP2 contribution rates and maximums",
+      "url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/calculating-deductions/making-deductions/second-additional-cpp-contribution-rates-maximums.html"
+    },
+    {
+      "name": "CRA — EI premium rates and maximums",
+      "url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/employment-insurance-ei/ei-premium-rates-maximums.html"
+    },
+    {
+      "name": "ESDC — 2026 EI premium rate news release",
+      "url": "https://www.canada.ca/en/employment-social-development/news/2025/09/canada-employment-insurance-commission-sets-the-2026-employment-insurance-premium-rate.html"
+    }
+  ],
+  "cpp": {
+    "rate": 0.0595,
+    "basicExemption": 3500,
+    "ympe": 74600,
+    "maximumEmployeeContribution": 4230.45
+  },
+  "cpp2": {
+    "rate": 0.04,
+    "yampe": 85000,
+    "maximumEmployeeContribution": 416.0
+  },
+  "ei": {
+    "rateOutsideQuebec": 0.0163,
+    "rateQuebec": 0.013,
+    "maximumInsurableEarnings": 68900,
+    "maximumEmployeePremiumOutsideQuebec": 1123.07,
+    "maximumEmployeePremiumQuebec": 895.7,
+    "employerMultiple": 1.4
+  },
+  "qpp": {
+    "note": "Quebec Pension Plan replaces CPP in Quebec.",
+    "baseRateEmployee": 0.053,
+    "firstAdditionalRateEmployee": 0.01,
+    "basicExemption": 3500,
+    "mpe": 74600,
+    "maximumEmployeeBasePlusFirstAdditional": 4479,
+    "yampe": 85000,
+    "secondAdditionalRateEmployee": 0.04,
+    "maximumEmployeeSecondAdditional": 416.0,
+    "source": "https://www.retraitequebec.gouv.qc.ca/en/programs/quebec-pension-plan/quebec-pension-plan-figures"
+  },
+  "qpip": {
+    "rateEmployee": 0.0043,
+    "maximumInsurableEarnings": 103000,
+    "maximumEmployeePremium": 442.9,
+    "source": "https://www.revenuquebec.ca/en/businesses/source-deductions-and-employer-contributions/calculating-source-deductions-and-contributions/qpip-premiums/maximum-insurable-earnings-and-premium-rate/"
+  }
+}
