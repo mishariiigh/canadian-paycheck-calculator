@@ -15,12 +15,17 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = buildMetadata({
-  title: "Canadian Take-Home Pay & Salary Calculators (2026)",
-  description:
-    "Free 2026 Canadian take-home pay calculator: estimate net salary after federal and provincial tax, CPP/QPP, CPP2/QPP2 and EI, for all provinces and territories.",
-  path: "/",
-});
+export const metadata: Metadata = {
+  ...buildMetadata({
+    title: "Canadian Take-Home Pay & Salary Calculators (2026)",
+    description:
+      "Free 2026 Canadian take-home pay calculator: estimate net salary after federal and provincial tax, CPP/QPP, CPP2/QPP2 and EI, for all provinces and territories.",
+    path: "/",
+  }),
+  other: {
+    "google-adsense-account": "ca-pub-1543283177172409",
+  },
+};
 
 export default function RootLayout({
   children,
