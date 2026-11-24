@@ -51,6 +51,9 @@ export function calculateAnnualTax(input: TaxCalculationInput): TaxCalculationRe
     taxableIncome,
     cppBaseAndFirstAdditional: pension.base,
     eiPremiums: ei.premium,
+    hasQualifiedRelation: input.hasQualifiedRelation,
+    claimsEligibleDependant: input.claimsEligibleDependant,
+    adjustedIncome: input.adjustedIncome,
   });
 
   const provincialPayrollTax = calculateProvincialPayrollTax({
@@ -87,6 +90,7 @@ export function calculateAnnualTax(input: TaxCalculationInput): TaxCalculationRe
       grossTax: provincial.grossTax,
       bpaCredit: provincial.bpaCredit,
       cppEiCredit: provincial.cppEiCredit,
+      lowIncomeReduction: provincial.lowIncomeReduction,
       surtax: provincial.surtax,
       netTaxBeforeSurtaxAdjustment: roundToCents(provincial.netTax - provincial.surtax),
       netTax: provincial.netTax,

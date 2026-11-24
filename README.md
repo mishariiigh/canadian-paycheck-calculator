@@ -40,8 +40,14 @@ CPP/EI non-refundable credits, Ontario surtax + health premium, Quebec 16.5%
 federal abatement with QPP/QPIP, and 2% employee payroll tax in NT/NU. Bonus
 calculations apply marginal rates with CPP/EI only on remaining annual room.
 
-Known simplifications and unverified values (e.g. the 2026 Canada employment
-amount) are documented in `docs/DATA-VALIDATION-REPORT.md`.
+Per-period results divide annual amounts evenly across pay periods. They are
+estimates, not actual CRA payroll withholding calculations (T4127). Actual payroll
+deductions may differ due to per-period rounding, cumulative averaging, and
+mid-year legislative changes.
+
+Known simplifications and unverified values are documented in
+`docs/DATA-VALIDATION-REPORT.md`, including the NL low-income tax reduction and
+SK low-income tax credit which are not modelled.
 
 ## Development
 

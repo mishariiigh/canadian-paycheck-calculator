@@ -6,8 +6,16 @@
   "lastVerified": "2026-11-24",
   "sources": [
     {
-      "name": "TaxTips.ca — Newfoundland and Labrador 2026 Tax Rates & Tax Brackets (confirmed to CRA information)",
-      "url": "https://www.taxtips.ca/taxrates/nl.htm"
+      "name": "NL Income Tax Act, 2000, section 21.1 — Low income reduction",
+      "url": "https://assembly.nl.ca/Legislation/sr/statutes/i01-1.htm"
+    },
+    {
+      "name": "NL Regulation 18/26 — Low Income Tax Reduction Regulations for the 2025 and 2026 Taxation Years",
+      "url": "https://assembly.nl.ca/Legislation/sr/regulations/rc260018.htm"
+    },
+    {
+      "name": "NL Department of Finance — Low Income Tax Reduction",
+      "url": "https://www.gov.nl.ca/fin/tax-programs-incentives/personal/lowincometaxreduction/"
     }
   ],
   "taxBrackets": [
@@ -45,11 +53,21 @@
     }
   ],
   "basicPersonalAmount": {
-    "amount": 15000,
+    "amount": 13094,
     "creditRate": 0.087
   },
   "indexationFactor": 1.033,
   "notes": [
-    "NL 2026 Budget raised the basic personal amount to $15,000; the indexed 2026 BPA per TaxTips.ca is $13,094 before the budget measure. Using $15,000 per NL Budget 2026 highlight."
-  ]
+    "NL 2026 BPA is $13,094 per official NL Department of Finance (indexed from $11,067 in 2025). The $15,000 figure takes effect in 2027, not 2026.",
+    "Low-Income Tax Reduction per Income Tax Act, 2000 s.21.1 and Reg 18/26: Amount A = $842 (21.1(2.1)(a)), Amount B = $563 (21.1(2.1)(b), qualified relation / 9(1)(b) only), clawback = 16%. Non-refundable (cannot exceed NL tax payable).",
+    "Thresholds are indexed annually under s.6.1(2) and NLR 121/07 (CPI formula). Base statutory amounts: $18,547 individual (21.1(2)(b)), $31,362 family (21.1(2)(c)). 2025 indexed thresholds derived from NL Department of Finance published elimination points: individual $23,928, family $40,460. 2026 indexing factor = 1.1% (CRA T4032-NL, KPMG 2026). 2026 indexed thresholds: individual $24,191 ($23,928 × 1.011), family $40,905 ($40,460 × 1.011). Confirmed by EY 2026 (individual clawback at $24,191, elimination at $29,454).",
+    "Calculator models a single employee. Qualified relation / eligible dependant status and adjusted income may be passed via TaxCalculationInput.hasQualifiedRelation, .claimsEligibleDependant, and .adjustedIncome. An eligible dependant's income is NOT included in adjusted income per s.21.1(1)(a)."
+  ],
+  "lowIncomeReduction": {
+    "amountA": 842,
+    "amountB": 563,
+    "thresholdIndividual": 24191,
+    "thresholdFamily": 40905,
+    "clawbackRate": 0.16
+  }
 }

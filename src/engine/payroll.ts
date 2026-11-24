@@ -20,8 +20,11 @@ export function calculatePayrollPeriods(
     const pension = roundToCents(annual.payroll.pensionTotal / periods);
     const ei = roundToCents(annual.payroll.ei / periods);
     const provincialPayrollTax = roundToCents(annual.payroll.provincialPayrollTax / periods);
-    const totalDeductions = roundToCents(federalTax + provincialTax + pension + ei + provincialPayrollTax);
-    const net = roundToCents(gross - totalDeductions);
+    // Derive net directly from annual net so per-period nets sum back to the
+    // annual total within rounding tolerance (n periods * 0.005 = max drift).
+    const net = roundToCents(annual.totals.netAnnualIncome / periods);
+    // Total deductions derived from gross - net for internal display consistency.
+    const totalDeductions = roundToCents(gross - net);
 
     return {
       frequency,

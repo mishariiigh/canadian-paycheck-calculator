@@ -29,7 +29,7 @@
     "note": "Maximum BPA for net income <= 181,440; reduced straight-line to minimum for net income >= 258,482."
   },
   "otherCredits": {
-    "employmentAmount": 1561,
+    "employmentAmount": 1501,
     "cppEiCreditBase": { "type": "actual", "note": "Actual CPP/QPP base+1st-additional and EI premiums are non-refundable credits (no CPP2/QPP2 credit)." }
   },
   "indexationFactor": 1.02

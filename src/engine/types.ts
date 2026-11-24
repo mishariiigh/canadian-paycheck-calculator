@@ -57,6 +57,19 @@ export interface ProvincialTaxData {
   };
   federalAbatement?: { rate: number; note: string };
   payrollTax?: { type: "employee"; rate: number; basis: string; note: string };
+  /** Newfoundland and Labrador low-income tax reduction (Income Tax Act, 2000 s.21.1; Reg 18/26). */
+  lowIncomeReduction?: {
+    /** Amount A prescribed by regulation for 21.1(2.1)(a). */
+    amountA: number;
+    /** Amount B prescribed by regulation for 21.1(2.1)(b) — applies only with qualified relation / 9(1)(b) claim. */
+    amountB: number;
+    /** Threshold for 21.1(2)(b) — single individual, no qualified relation. */
+    thresholdIndividual: number;
+    /** Threshold for 21.1(2)(c) — qualified relation or 9(1)(b) claim. */
+    thresholdFamily: number;
+    /** Clawback rate per 21.1(2) — 16%. */
+    clawbackRate: number;
+  };
 }
 
 export interface PayrollData {
@@ -116,6 +129,12 @@ export interface TaxCalculationInput {
   otherDeductions?: number;
   /** Number ofCPP/EI contribution months; defaults to 12. */
   monthsWorked?: number;
+  /** Whether the individual has a cohabiting spouse/common-law partner (qualified relation per s.21.1(1)(c)). */
+  hasQualifiedRelation?: boolean;
+  /** Whether the individual claims an amount under paragraph 9(1)(b) for an eligible dependant. */
+  claimsEligibleDependant?: boolean;
+  /** Adjusted income per s.21.1(1)(a) — includes qualified relation's income per federal s.122.6. Defaults to taxable income. Does NOT include an eligible dependant's income. */
+  adjustedIncome?: number;
 }
 
 export interface TaxCalculationResult {
@@ -134,6 +153,7 @@ export interface TaxCalculationResult {
     grossTax: number;
     bpaCredit: number;
     cppEiCredit: number;
+    lowIncomeReduction: number;
     surtax: number;
     netTaxBeforeSurtaxAdjustment: number;
     netTax: number;

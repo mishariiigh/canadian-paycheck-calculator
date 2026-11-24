@@ -35,10 +35,14 @@ export function calculateProvincialTax(options: {
   taxableIncome: number;
   cppBaseAndFirstAdditional: number;
   eiPremiums: number;
+  hasQualifiedRelation?: boolean;
+  claimsEligibleDependant?: boolean;
+  adjustedIncome?: number;
 }): {
   grossTax: number;
   bpaCredit: number;
   cppEiCredit: number;
+  lowIncomeReduction: number;
   surtax: number;
   netTax: number;
   healthPremium: number;
@@ -52,6 +56,30 @@ export function calculateProvincialTax(options: {
   const cppEiCredit = (options.cppBaseAndFirstAdditional + options.eiPremiums) * data.basicPersonalAmount.creditRate;
 
   let netTax = Math.max(0, roundToCents(grossTax) - bpaCredit - cppEiCredit);
+
+  // Newfoundland and Labrador Low-Income Tax Reduction (Income Tax Act, 2000 s.21.1; Reg 18/26).
+  // Subsection (2): reduction = max(0, (A + B) - 0.16 * max(0, adjustedIncome - threshold)).
+  //   A = amount prescribed by regulation (21.1(2.1)(a)) — $842 for 2026.
+  //   B = amount prescribed by regulation (21.1(2.1)(b)) — $563 for 2026, only when
+  //       the individual has a qualified relation OR claims an amount under 9(1)(b).
+  //   Threshold = indexed individual threshold (21.1(2)(b)) when neither condition applies;
+  //               indexed family threshold (21.1(2)(c)) when either condition applies.
+  //   Non-refundable: cannot exceed tax otherwise payable (applied last per s.21.1(5)).
+  //   Adjusted income per s.21.1(1)(a) includes qualified relation's income per federal s.122.6.
+  //   An eligible dependant's income is NOT included in adjusted income.
+  let lowIncomeReduction = 0;
+  if (options.province === "NL" && data.lowIncomeReduction) {
+    const litr = data.lowIncomeReduction;
+    const adjustedIncome = options.adjustedIncome ?? options.taxableIncome;
+    const hasRelationOrDependant = options.hasQualifiedRelation ?? options.claimsEligibleDependant ?? false;
+    const amountA = litr.amountA;
+    const amountB = hasRelationOrDependant ? litr.amountB : 0;
+    const threshold = hasRelationOrDependant ? litr.thresholdFamily : litr.thresholdIndividual;
+    const excess = Math.max(0, adjustedIncome - threshold);
+    lowIncomeReduction = Math.max(0, roundToCents(amountA + amountB - litr.clawbackRate * excess));
+    lowIncomeReduction = Math.min(lowIncomeReduction, netTax);
+    netTax = roundToCents(netTax - lowIncomeReduction);
+  }
 
   let surtax = 0;
   if (options.province === "ON" && data.surtax) {
@@ -71,6 +99,7 @@ export function calculateProvincialTax(options: {
     grossTax: roundToCents(grossTax),
     bpaCredit: roundToCents(bpaCredit),
     cppEiCredit: roundToCents(cppEiCredit),
+    lowIncomeReduction: roundToCents(lowIncomeReduction),
     surtax: roundToCents(surtax),
     netTax,
     healthPremium,
