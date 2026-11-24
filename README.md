@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Canada Take-Home Pay & Financial Calculators
 
-## Getting Started
+Production-quality Canadian salary/payroll calculator platform for the **2026 tax year**, covering all 13 provinces and territories.
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Next.js (App Router) + TypeScript (strict) + Tailwind CSS
+- Recharts for visualisation
+- Vitest for engine & integration tests
+- No database — tax parameters live in version-controlled JSON under `data/`
+
+## Architecture
+
+```
+data/2026/            # single source of truth for all tax parameters (per tax year)
+  federal.json        # federal brackets, enhanced BPA, employment amount
+  payroll.json        # CPP, CPP2, EI, QPP, QPIP
+  provinces/*.json    # 13 jurisdictions incl. ON surtax/health premium, NT/NU payroll tax
+src/engine/           # pure calculation engine (framework-agnostic, no Next.js/React imports)
+src/lib/              # formatting, validation, SEO helpers
+src/components/       # UI (layout, calculators, charts)
+src/app/              # Next.js routes incl. SEO landing pages
+tests/                # engine fixtures + integration tests (Vitest)
+scripts/gen-provinces.mjs  # generator used to create the province JSON files
+docs/DATA-VALIDATION-REPORT.md  # per-parameter source, verification status, effective date
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Tax-year upgrade process
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Create `data/<new-year>/` — **never** modify a previous year's directory.
+2. Copy forward and update values; every change must have a documented source (see the validation report's re-verification checklist).
+3. Update `TAX_YEAR` in `src/engine/tax-data.ts` and test fixtures.
+4. Run `npm test` — fixture tests assert exact bracket boundaries and maximums, so silent data changes fail loudly.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Accuracy model
 
-## Learn More
+Annual T1-style calculation: progressive federal + provincial tax, enhanced basic
+personal amount (with federal income-based phase-out), Canada employment amount,
+CPP/EI non-refundable credits, Ontario surtax + health premium, Quebec 16.5%
+federal abatement with QPP/QPIP, and 2% employee payroll tax in NT/NU. Bonus
+calculations apply marginal rates with CPP/EI only on remaining annual room.
 
-To learn more about Next.js, take a look at the following resources:
+Known simplifications and unverified values (e.g. the 2026 Canada employment
+amount) are documented in `docs/DATA-VALIDATION-REPORT.md`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Development
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm install
+npm run dev        # http://localhost:3000
+npm test           # Vitest: engine + integration tests
+npm run lint
+npm run build      # static generation of calculator & SEO pages
+```
 
-## Deploy on Vercel
+## Routes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `/` — overview with cross-Canada net pay comparison
+- `/calculators` — index
+- `/calculators/take-home-pay` — interactive calculator
+- `/calculators/hourly-to-salary`, `/calculators/bonus-tax`, `/calculators/salary-comparison`
+- `/province/[province]` — provincial tax rates landing pages
+- `/take-home-pay/[province]/[salary]` — salary-specific SEO pages (e.g. `/take-home-pay/on/80000`)
+- `/sitemap.xml`, `/robots.txt`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Disclaimer
+
+Estimates for informational purposes only, for a single employee claiming the
+basic personal amount and standard credits. Not tax advice.
