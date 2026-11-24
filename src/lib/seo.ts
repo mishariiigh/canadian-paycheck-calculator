@@ -1,6 +1,6 @@
 import type { ProvinceCode } from "@/engine/types";
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://canadatakehome.example.com";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://canadian-paycheck-calculator.vercel.app";
 export const SITE_NAME = "Canada Take-Home Pay Calculators";
 
 export function provinceSlug(code: ProvinceCode): string {
