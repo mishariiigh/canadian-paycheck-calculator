@@ -32,7 +32,7 @@ export function BonusTaxCalculator() {
                   min={0}
                   value={salary}
                   onChange={(e) => setSalary(Math.max(0, Number(e.target.value) || 0))}
-                  className="sfx-input pl-9"
+                  className="sfx-input sfx-input--currency"
                 />
               </div>
             </div>
@@ -47,7 +47,7 @@ export function BonusTaxCalculator() {
                   min={0}
                   value={bonus}
                   onChange={(e) => setBonus(Math.max(0, Number(e.target.value) || 0))}
-                  className="sfx-input pl-9"
+                  className="sfx-input sfx-input--currency"
                 />
               </div>
             </div>

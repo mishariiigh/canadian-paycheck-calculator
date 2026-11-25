@@ -35,7 +35,7 @@ export function SalaryComparisonCalculator() {
                 step={5000}
                 value={salary}
                 onChange={(e) => setSalary(Math.max(0, Number(e.target.value) || 0))}
-                className="sfx-input pl-9"
+                className="sfx-input sfx-input--currency"
               />
             </div>
           </div>

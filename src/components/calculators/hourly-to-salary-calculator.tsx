@@ -41,7 +41,7 @@ export function HourlyToSalaryCalculator() {
                   step={0.5}
                   value={hourly}
                   onChange={(e) => setHourly(Math.max(0, Number(e.target.value) || 0))}
-                  className="sfx-input pl-9"
+                  className="sfx-input sfx-input--currency"
                 />
               </div>
             </div>
