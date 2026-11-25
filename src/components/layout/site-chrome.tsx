@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ALL_PROVINCES } from "@/engine/tax-data";
 
@@ -5,8 +6,15 @@ export function Header() {
   return (
     <header className="border-b border-gray-200 bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-        <Link href="/" className="text-lg font-bold text-gray-900">
-          🇨🇦 Canada Take-Home Pay
+        <Link href="/" className="flex items-center gap-2 text-lg font-bold text-gray-900">
+          <Image
+            src="/images/canada-maple-leaf.png"
+            alt="Canadian maple leaf"
+            width={40}
+            height={40}
+            className="object-contain"
+          />
+          Canada Take-Home Pay
         </Link>
         <nav className="flex gap-4 text-sm text-gray-600">
           <Link href="/calculators" className="hover:text-blue-700">Calculators</Link>
