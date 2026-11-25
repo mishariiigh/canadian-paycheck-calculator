@@ -5,7 +5,7 @@ import { getProvincialData } from "@/engine/tax-data";
 describe("Ontario 2026", () => {
   const data = getProvincialData("ON");
 
-  it("brackets match confirmed 2026 values", () => {
+  it("brackets match confirmed 2026-2027 values", () => {
     expect(data.taxBrackets).toEqual([
       { upTo: 53891, rate: 0.0505 },
       { upTo: 107785, rate: 0.0915 },
@@ -44,7 +44,7 @@ describe("Ontario 2026", () => {
 });
 
 describe("provincial data sanity for all provinces", () => {
-  const codes = ["AB","BC","MB","NB","NL","NS","NT","NU","PE","QC","SK","YT"] as const;
+  const codes = ["AB", "BC", "MB", "NB", "NL", "NS", "NT", "NU", "PE", "QC", "SK", "YT"] as const;
 
   it.each(codes)("brackets and BPA exist for %s", (code) => {
     const d = getProvincialData(code);
