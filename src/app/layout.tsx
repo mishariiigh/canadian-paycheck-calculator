@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header, Footer } from "@/components/layout/site-chrome";
 import { buildMetadata } from "@/lib/seo";
+import { GoogleTagManager } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
   ...buildMetadata({
@@ -39,6 +40,9 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        {/* Google Tag Manager — loads once, after hydration, on every route.
+            No financial calculator values are pushed to dataLayer. */}
+        <GoogleTagManager gtmId="GTM-WJ2GZCG7" />
       </body>
     </html>
   );
