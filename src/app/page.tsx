@@ -24,7 +24,7 @@ export default function Home() {
             <div>
               <span className="sfx-kicker">Canadian Paycheck Calculator</span>
               <h1 className="sfx-h1 mt-2 mb-4 sm:mb-6 sm:text-4xl md:text-5xl">
-                Estimate your take-home pay for 2026 / 2027
+                Estimate your take-home pay for 2026 - 2027
               </h1>
               <p className="sfx-text-muted max-w-lg sm:max-w-none sm:text-lg leading-relaxed">
                 Calculate net pay after federal tax, provincial tax, CPP/QPP,
