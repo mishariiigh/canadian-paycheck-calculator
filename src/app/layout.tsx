@@ -1,19 +1,8 @@
 
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header, Footer } from "@/components/layout/site-chrome";
 import { buildMetadata } from "@/lib/seo";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   ...buildMetadata({
@@ -44,11 +33,9 @@ export default function RootLayout({
         />
       </head>
 
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col bg-gray-50 antialiased`}
-      >
+      <body className="antialiased">
         <Header />
-        <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">
+        <main className="sfx-container sfx-section flex-1">
           {children}
         </main>
         <Footer />

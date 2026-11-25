@@ -12,9 +12,11 @@ export const metadata = buildMetadata({
 export default function SalaryComparisonPage() {
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-gray-900">Salary Comparison by Province</h1>
-        <p className="mt-2 text-gray-600">See how the same gross salary converts to net pay across Canada.</p>
+      <div className="sfx-card p-6 md:p-8">
+        <h1 className="sfx-h2 mb-3">Salary Comparison by Province</h1>
+        <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">
+          See how the same gross salary converts to net pay across Canada.
+        </p>
       </div>
       <SalaryComparisonCalculator />
     </div>

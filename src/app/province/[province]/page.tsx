@@ -43,8 +43,8 @@ export default async function ProvincePage({ params }: Props) {
   return (
     <div className="space-y-8">
       <header>
-        <h1 className="text-2xl font-bold text-gray-900">{name} Tax Rates &amp; Take-Home Pay ({getTaxYear()})</h1>
-        <p className="mt-2 text-gray-600">
+        <h1 className="sfx-h2">{name} Tax Rates &amp; Take-Home Pay ({getTaxYear()})</h1>
+        <p className="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">
           {getTaxYear()} {name} provincial/territorial tax brackets, basic personal amount and
           take-home pay examples. Rates verified against CRA-confirmed sources — see the
           data validation report for details.
@@ -52,82 +52,88 @@ export default async function ProvincePage({ params }: Props) {
       </header>
 
       <section className="grid gap-6 md:grid-cols-2">
-        <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-          <h2 className="mb-3 text-lg font-semibold">{name} tax brackets ({getTaxYear()})</h2>
-          <table className="w-full text-sm">
+        <div className="sfx-card p-6">
+          <h2 className="sfx-h3 mb-4">{name} tax brackets ({getTaxYear()})</h2>
+          <table className="sfx-table w-full text-sm">
             <thead>
-              <tr className="border-b border-gray-200 text-left text-gray-500">
-                <th className="py-2 font-medium">Taxable income</th>
-                <th className="py-2 text-right font-medium">Rate</th>
+              <tr className="border-b border-[var(--color-border)] text-left">
+                <th className="px-4 py-3 font-medium">Taxable income</th>
+                <th className="px-4 py-3 text-right font-medium">Rate</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-[var(--color-border)]">
               {data.taxBrackets.map((b, i) => {
                 const lower = i === 0 ? 0 : data.taxBrackets[i - 1].upTo!;
                 return (
                   <tr key={i}>
-                    <td className="py-2">
+                    <td className="px-4 py-3">
                       {b.upTo === null
                         ? `Over ${formatCurrency(lower)}`
                         : `${formatCurrency(lower)} – ${formatCurrency(b.upTo)}`}
                     </td>
-                    <td className="py-2 text-right tabular-nums">{formatPercent(b.rate)}</td>
+                    <td className="px-4 py-3 text-right tabular-nums">{formatPercent(b.rate)}</td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
-          <p className="mt-3 text-sm text-gray-500">
-            Basic personal amount: <strong>{formatCurrency(data.basicPersonalAmount.amount)}</strong>{" "}
+          <p className="mt-4 text-sm text-[var(--color-text-muted)]">
+            Basic personal amount:{" "}
+            <span className="font-semibold text-[var(--color-text-primary)]">
+              {formatCurrency(data.basicPersonalAmount.amount)}
+            </span>{" "}
             (credit at {formatPercent(data.basicPersonalAmount.creditRate)})
           </p>
           {data.notes && (
-            <ul className="mt-2 list-disc pl-5 text-xs text-gray-500">
+            <ul className="mt-3 list-disc pl-5 text-xs text-[var(--color-text-muted)] space-y-1">
               {data.notes.map((n, i) => <li key={i}>{n}</li>)}
             </ul>
           )}
         </div>
 
-        <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-          <h2 className="mb-3 text-lg font-semibold">Federal brackets ({getTaxYear()})</h2>
-          <table className="w-full text-sm">
+        <div className="sfx-card p-6">
+          <h2 className="sfx-h3 mb-4">Federal brackets ({getTaxYear()})</h2>
+          <table className="sfx-table w-full text-sm">
             <thead>
-              <tr className="border-b border-gray-200 text-left text-gray-500">
-                <th className="py-2 font-medium">Taxable income</th>
-                <th className="py-2 text-right font-medium">Rate</th>
+              <tr className="border-b border-[var(--color-border)] text-left">
+                <th className="px-4 py-3 font-medium">Taxable income</th>
+                <th className="px-4 py-3 text-right font-medium">Rate</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-[var(--color-border)]">
               {fed.taxBrackets.map((b, i) => {
                 const lower = i === 0 ? 0 : fed.taxBrackets[i - 1].upTo!;
                 return (
                   <tr key={i}>
-                    <td className="py-2">
+                    <td className="px-4 py-3">
                       {b.upTo === null
                         ? `Over ${formatCurrency(lower)}`
                         : `${formatCurrency(lower)} – ${formatCurrency(b.upTo)}`}
                     </td>
-                    <td className="py-2 text-right tabular-nums">{formatPercent(b.rate)}</td>
+                    <td className="px-4 py-3 text-right tabular-nums">{formatPercent(b.rate)}</td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
-          <p className="mt-3 text-sm text-gray-500">
-            Federal basic personal amount: up to {formatCurrency(fed.basicPersonalAmount.maximum)}
+          <p className="mt-4 text-sm text-[var(--color-text-muted)]">
+            Federal basic personal amount: up to{" "}
+            <span className="font-semibold text-[var(--color-text-primary)]">
+              {formatCurrency(fed.basicPersonalAmount.maximum)}
+            </span>{" "}
             (reduced to {formatCurrency(fed.basicPersonalAmount.minimum)} for high incomes).
           </p>
         </div>
       </section>
 
-      <section>
-        <h2 className="mb-4 text-xl font-semibold text-gray-900">
-          Take-home pay examples in {name}
-        </h2>
-        <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-sm">
-          <table className="w-full text-sm">
+      <section className="sfx-card">
+        <div className="px-6 py-5 border-b border-[var(--color-border)]">
+          <h2 className="sfx-h3 mb-0">Take-home pay examples in {name}</h2>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="sfx-table w-full text-sm">
             <thead>
-              <tr className="border-b border-gray-200 text-left text-gray-500">
+              <tr className="border-b border-[var(--color-border)] text-left">
                 <th className="px-4 py-3 font-medium">Gross salary</th>
                 <th className="px-4 py-3 text-right font-medium">Total deductions</th>
                 <th className="px-4 py-3 text-right font-medium">Net annual</th>
@@ -136,16 +142,26 @@ export default async function ProvincePage({ params }: Props) {
                 <th className="px-4 py-3" />
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-[var(--color-border)]">
               {examples.map(({ salary, result }) => (
                 <tr key={salary}>
-                  <td className="px-4 py-3 font-semibold">{formatCurrency(salary)}</td>
-                  <td className="px-4 py-3 text-right tabular-nums">{formatCurrency(result.totals.totalTaxAndDeductions)}</td>
-                  <td className="px-4 py-3 text-right font-semibold tabular-nums text-green-700">{formatCurrency(result.totals.netAnnualIncome)}</td>
-                  <td className="px-4 py-3 text-right tabular-nums">{formatCurrency(result.totals.netAnnualIncome / 12)}</td>
-                  <td className="px-4 py-3 text-right tabular-nums text-gray-500">{formatPercent(result.totals.averageTaxRate, 1)}</td>
+                  <td className="px-4 py-3 font-semibold money">{formatCurrency(salary)}</td>
+                  <td className="px-4 py-3 text-right tabular-nums text-[var(--color-text-muted)]">
+                    {formatCurrency(result.totals.totalTaxAndDeductions)}
+                  </td>
+                  <td className="px-4 py-3 text-right font-semibold tabular-nums text-[var(--color-success)] money">
+                    {formatCurrency(result.totals.netAnnualIncome)}
+                  </td>
+                  <td className="px-4 py-3 text-right tabular-nums">
+                    {formatCurrency(result.totals.netAnnualIncome / 12)}
+                  </td>
+                  <td className="px-4 py-3 text-right tabular-nums text-[var(--color-text-muted)]">
+                    {formatPercent(result.totals.averageTaxRate, 1)}
+                  </td>
                   <td className="px-4 py-3 text-right">
-                    <Link href={takeHomePayUrl(code, salary)} className="text-blue-700 hover:underline">Details →</Link>
+                    <Link href={takeHomePayUrl(code, salary)} className="sfx-link">
+                      Details →
+                    </Link>
                   </td>
                 </tr>
               ))}

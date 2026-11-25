@@ -15,7 +15,6 @@ interface Props {
 const COMMON_SALARIES = [30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000, 120000, 150000];
 
 export function generateStaticParams() {
-  // Generate a bounded set for static generation; other values render on demand.
   const params: { province: string; salary: string }[] = [];
   for (const p of ALL_PROVINCES) {
     for (const s of COMMON_SALARIES) {
@@ -53,12 +52,12 @@ export default async function TakeHomePaySalaryPage({ params }: Props) {
   const result = calculateFull({ grossAnnualIncome: parsed, province: code, taxYear: getTaxYear() });
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <header>
-        <h1 className="text-2xl font-bold text-gray-900">
+        <h1 className="sfx-h2">
           {formatCurrency(parsed)} Take-Home Pay in {name} ({getTaxYear()})
         </h1>
-        <p className="mt-2 text-gray-600">
+        <p className="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">
           Estimated net pay on a {formatCurrency(parsed)} gross salary in {name}, after federal
           tax, {name} tax, {result.annual.payroll.pensionName}, {result.annual.payroll.eiName}
           {result.annual.payroll.provincialPayrollTax > 0 ? " and provincial payroll tax" : ""}.
@@ -70,23 +69,30 @@ export default async function TakeHomePaySalaryPage({ params }: Props) {
       <TakeHomeBarChart result={result.annual} />
       <PerPeriodTable periods={result.perPeriod} />
 
-      <section className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-        <h2 className="mb-3 text-lg font-semibold">Nearby salaries in {name}</h2>
-        <div className="flex flex-wrap gap-2">
-          {COMMON_SALARIES.map((s) => (
-            <Link
-              key={s}
-              href={takeHomePayUrl(code, s)}
-              className={`rounded-lg border px-3 py-2 text-sm ${s === parsed ? "border-blue-600 bg-blue-50 text-blue-800" : "border-gray-200 hover:border-blue-400"
+      <section className="sfx-card">
+        <div className="px-6 py-5 border-b border-[var(--color-border)]">
+          <h2 className="sfx-h3 mb-0">Nearby salaries in {name}</h2>
+        </div>
+        <div className="px-6 pb-6">
+          <div className="flex flex-wrap gap-2">
+            {COMMON_SALARIES.map((s) => (
+              <Link
+                key={s}
+                href={takeHomePayUrl(code, s)}
+                className={`rounded-[var(--radius-md)] border px-3 py-2 text-sm font-medium transition-all ${
+                  s === parsed
+                    ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-[var(--color-text-on-primary)]"
+                    : "border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-border-hover)] hover:bg-[#F5F7FB]"
                 }`}
-            >
-              ${s.toLocaleString("en-CA")}
-            </Link>
-          ))}
+              >
+                ${s.toLocaleString("en-CA")}
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
-      <p className="text-xs text-gray-500">
+      <p className="text-xs text-[var(--color-text-muted)] leading-relaxed">
         These are estimates based on {getTaxYear()} CRA and provincial parameters and a simplified
         credit model (basic personal amount, Canada employment amount, CPP/EI credits). Other
         deductions or credits will change your actual results. Not tax advice.

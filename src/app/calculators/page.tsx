@@ -34,17 +34,21 @@ const calculators = [
 
 export default function CalculatorsPage() {
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-gray-900">Calculators</h1>
-      <div className="grid gap-4 md:grid-cols-2">
+    <div className="space-y-8">
+      <h1 className="sfx-h1">Calculators</h1>
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {calculators.map((c) => (
           <Link
             key={c.href}
             href={c.href}
-            className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm hover:border-blue-400"
+            className="sfx-card p-6 sfx-link hover:border-[var(--color-border-hover)] transition-border"
           >
-            <h2 className="text-lg font-semibold text-gray-900">{c.title}</h2>
-            <p className="mt-2 text-sm text-gray-600">{c.description}</p>
+            <h2 className="text-lg font-semibold text-[var(--color-text-primary)] tracking-tight">
+              {c.title}
+            </h2>
+            <p className="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">
+              {c.description}
+            </p>
           </Link>
         ))}
       </div>

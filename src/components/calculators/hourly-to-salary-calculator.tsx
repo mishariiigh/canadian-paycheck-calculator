@@ -3,10 +3,10 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ALL_PROVINCES } from "@/engine/tax-data";
+import type { ProvinceCode } from "@/engine/types";
 import { hourlyToAnnualConversion } from "@/engine/salary-conversion";
 import { calculateAnnualTax } from "@/engine/annual-tax";
-import type { ProvinceCode } from "@/engine/types";
-import { formatCurrency } from "@/lib/formatting";
+import { formatCurrency, formatPercent } from "@/lib/formatting";
 
 export function HourlyToSalaryCalculator() {
   const [hourly, setHourly] = useState(30);
@@ -25,45 +25,109 @@ export function HourlyToSalaryCalculator() {
   );
 
   return (
-    <div className="space-y-6">
-      <div className="grid gap-4 rounded-xl border border-gray-200 bg-white p-6 shadow-sm md:grid-cols-4">
-        <label className="block">
-          <span className="mb-1 block text-sm font-medium text-gray-700">Hourly rate ($)</span>
-          <input type="number" min={0} value={hourly} onChange={(e) => setHourly(Math.max(0, Number(e.target.value)))} className="w-full rounded-lg border border-gray-300 px-3 py-2" />
-        </label>
-        <label className="block">
-          <span className="mb-1 block text-sm font-medium text-gray-700">Hours per week</span>
-          <input type="number" min={1} max={80} value={hours} onChange={(e) => setHours(Number(e.target.value))} className="w-full rounded-lg border border-gray-300 px-3 py-2" />
-        </label>
-        <label className="block">
-          <span className="mb-1 block text-sm font-medium text-gray-700">Weeks per year</span>
-          <input type="number" min={1} max={52} value={weeks} onChange={(e) => setWeeks(Number(e.target.value))} className="w-full rounded-lg border border-gray-300 px-3 py-2" />
-        </label>
-        <label className="block">
-          <span className="mb-1 block text-sm font-medium text-gray-700">Province</span>
-          <select value={province} onChange={(e) => setProvince(e.target.value as ProvinceCode)} className="w-full rounded-lg border border-gray-300 px-3 py-2">
-            {ALL_PROVINCES.map((p) => (
-              <option key={p.code} value={p.code}>{p.name}</option>
-            ))}
-          </select>
-        </label>
+    <div className="space-y-8">
+      <div className="sfx-card p-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div className="grid gap-4 md:grid-cols-5">
+            <div className="space-y-1">
+              <label className="sfx-label">Hourly rate</label>
+              <div className="relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-text-muted)]">
+                  $
+                </span>
+                <input
+                  type="number"
+                  min={0}
+                  step={0.5}
+                  value={hourly}
+                  onChange={(e) => setHourly(Math.max(0, Number(e.target.value) || 0))}
+                  className="sfx-input pl-9"
+                />
+              </div>
+            </div>
+            <div className="space-y-1">
+              <label className="sfx-label">Hours per week</label>
+              <input
+                type="number"
+                min={1}
+                max={80}
+                value={hours}
+                onChange={(e) => setHours(Math.min(80, Math.max(1, Number(e.target.value) || 1)))}
+                className="sfx-input"
+              />
+            </div>
+            <div className="space-y-1">
+              <label className="sfx-label">Weeks per year</label>
+              <input
+                type="number"
+                min={1}
+                max={52}
+                value={weeks}
+                onChange={(e) => setWeeks(Math.min(52, Math.max(1, Number(e.target.value) || 1)))}
+                className="sfx-input"
+              />
+            </div>
+            <div className="space-y-1">
+              <label className="sfx-label">Province</label>
+              <select
+                value={province}
+                onChange={(e) => setProvince(e.target.value as ProvinceCode)}
+                className="sfx-select"
+              >
+                {ALL_PROVINCES.map((p) => (
+                  <option key={p.code} value={p.code}>{p.name}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-        <h2 className="text-lg font-semibold">Converted salary</h2>
-        <dl className="mt-3 grid gap-3 text-sm md:grid-cols-4">
-          <div><dt className="text-gray-500">Annual gross</dt><dd className="text-lg font-semibold">{formatCurrency(conversion.annualSalary)}</dd></div>
-          <div><dt className="text-gray-500">Monthly gross</dt><dd className="text-lg font-semibold">{formatCurrency(conversion.monthlyGross)}</dd></div>
-          <div><dt className="text-gray-500">Weekly gross</dt><dd className="text-lg font-semibold">{formatCurrency(conversion.weeklyGross)}</dd></div>
-          <div><dt className="text-gray-500">Annual net (est.)</dt><dd className="text-lg font-semibold text-green-700">{formatCurrency(result.totals.netAnnualIncome)}</dd></div>
-        </dl>
-        <p className="mt-4 text-sm text-gray-600">
-          Average deductions rate: {(result.totals.averageTaxRate * 100).toFixed(1)}%.{" "}
-          <Link href={`/take-home-pay/${province.toLowerCase()}/${Math.round(conversion.annualSalary)}`} className="text-blue-700 hover:underline">
-            See the full breakdown →
-          </Link>
-        </p>
+      <div className="sfx-card">
+        <div className="px-6 py-5 border-b border-[var(--color-border)]">
+          <h3 className="sfx-h3 mb-1">Converted salary</h3>
+          <p className="text-xs text-[var(--color-text-muted)]">
+            Gross and estimated take-home pay based on your hourly wage for 2026.
+          </p>
+        </div>
+        <div className="px-6 pb-6">
+          <div className="grid gap-3 sm:grid-cols-4 text-sm">
+            <Stat label="Annual gross" value={formatCurrency(conversion.annualSalary)} />
+            <Stat label="Monthly gross" value={formatCurrency(conversion.monthlyGross)} />
+            <Stat label="Weekly gross" value={formatCurrency(conversion.weeklyGross)} />
+            <Stat
+              label="Annual net (est.)"
+              value={formatCurrency(result.totals.netAnnualIncome)}
+              positive
+            />
+          </div>
+          <p className="mt-5 px-6 text-xs text-[var(--color-text-muted)]">
+            Average deductions rate:{" "}
+            <span className="font-semibold text-[var(--color-text-primary)]">
+              {formatPercent(result.totals.averageTaxRate, 1)}
+            </span>{" "}
+            <Link
+              href={`/take-home-pay/${province.toLowerCase()}/${Math.round(conversion.annualSalary)}`}
+              className="sfx-link ml-1"
+            >
+              See the full breakdown →
+            </Link>
+          </p>
+        </div>
       </div>
+    </div>
+  );
+}
+
+function Stat({ label, value, positive }: { label: string; value: string; positive?: boolean }) {
+  return (
+    <div className="p-3 rounded-[var(--radius-md)] border border-[var(--color-border)] bg-[var(--color-background)]">
+      <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-text-muted)] mb-1">
+        {label}
+      </p>
+      <p className={`tabular-nums font-semibold ${positive ? "text-[var(--color-success)]" : "text-[var(--color-text-primary)]"}`}>
+        {value}
+      </p>
     </div>
   );
 }

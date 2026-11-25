@@ -14,27 +14,52 @@ import { formatCurrency } from "@/lib/formatting";
 
 export function TakeHomeBarChart({ result }: { result: TaxCalculationResult }) {
   const data = [
-    { name: "Gross", value: result.grossAnnualIncome },
+    { name: "Gross pay", value: result.grossAnnualIncome, color: "#17243A" },
     {
       name: "Income tax",
       value: result.federal.effectiveAbatedTax + result.provincial.totalPayable,
+      color: "#D92736",
     },
-    { name: result.payroll.pensionName, value: result.payroll.pensionTotal },
-    { name: result.payroll.eiName, value: result.payroll.ei },
-    { name: "Net", value: result.totals.netAnnualIncome },
+    { name: result.payroll.pensionName, value: result.payroll.pensionTotal, color: "#64748B" },
+    { name: result.payroll.eiName, value: result.payroll.ei, color: "#94A3B8" },
+    { name: "Net pay", value: result.totals.netAnnualIncome, color: "#16A36A" },
   ];
 
   return (
-    <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-      <h3 className="mb-4 text-lg font-semibold">Where your gross pay goes</h3>
-      <div className="h-72">
+    <div className="sfx-card">
+      <div className="px-6 py-5 border-b border-[var(--color-border)]">
+        <h3 className="sfx-h3 mb-1">Where your gross pay goes</h3>
+        <p className="text-xs text-[var(--color-text-muted)]">
+          Annual breakdown of gross pay into tax, deductions and net pay.
+        </p>
+      </div>
+      <div className="px-6 pb-6 h-64">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data} margin={{ top: 4, right: 8, left: 8, bottom: 4 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#eee" />
-            <XAxis dataKey="name" tick={{ fontSize: 12 }} />
-            <YAxis tickFormatter={(v: number) => `$${Math.round(v / 1000)}k`} tick={{ fontSize: 12 }} />
-            <Tooltip formatter={(value) => formatCurrency(Number(value))} />
-            <Bar dataKey="value" radius={[4, 4, 0, 0]} fill="#2563eb" />
+          <BarChart data={data} margin={{ top: 4, right: 16, left: 4, bottom: 4 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#E5EAF1" />
+            <XAxis
+              dataKey="name"
+              tick={{ fontSize: 12, fill: "#64748B" }}
+              axisLine={false}
+              tickLine={false}
+            />
+            <YAxis
+              tickFormatter={(v: number) => `$${Math.round(v / 1000)}k`}
+              tick={{ fontSize: 12, fill: "#64748B" }}
+              axisLine={false}
+              tickLine={false}
+              hide
+            />
+            <Tooltip
+              formatter={(value) => formatCurrency(Number(value ?? 0))}
+              wrapperStyle={{ outline: "none", boxShadow: "var(--shadow-md)" }}
+              contentStyle={{ border: "1px solid #E5EAF1", borderRadius: "8px", background: "#FFFFFF" }}
+              itemStyle={{ color: "#263449", fontSize: 13, marginBottom: 4 }}
+              labelStyle={{ color: "#64748B", fontSize: 12, fontWeight: 600 }}
+            />
+            {data.map((bar) => (
+              <Bar key={bar.name} dataKey="value" radius={[6, 6, 0, 0]} fill={bar.color} />
+            ))}
           </BarChart>
         </ResponsiveContainer>
       </div>
