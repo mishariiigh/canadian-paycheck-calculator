@@ -172,6 +172,7 @@ export function Footer() {
               Calculators
             </h3>
             <ul className="space-y-2.5 text-sm text-[var(--color-text-muted)]">
+              <li><Link href="/job-offer-comparison" className="sfx-link">Job Offer Comparison Studio</Link></li>
               <li><Link href="/calculators/take-home-pay" className="sfx-link">Take-Home Pay Calculator</Link></li>
               <li><Link href="/calculators/hourly-to-salary" className="sfx-link">Hourly to Salary</Link></li>
               <li><Link href="/calculators/bonus-tax" className="sfx-link">Bonus Tax Calculator</Link></li>

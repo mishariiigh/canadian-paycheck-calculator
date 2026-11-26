@@ -8,7 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE_URL;
   const now = new Date();
 
-  const staticRoutes = ["", "/calculators", "/calculators/take-home-pay", "/calculators/hourly-to-salary", "/calculators/bonus-tax", "/calculators/salary-comparison"].map(
+  const staticRoutes = ["", "/calculators", "/calculators/take-home-pay", "/calculators/hourly-to-salary", "/calculators/bonus-tax", "/calculators/salary-comparison", "/job-offer-comparison"].map(
     (path) => ({ url: `${base}${path}`, lastModified: now, changeFrequency: "monthly" as const, priority: path === "" ? 1 : 0.8 })
   );
 

@@ -16,6 +16,17 @@ const calculators = [
       "Estimate net annual, monthly, semi-monthly, bi-weekly and weekly pay after federal tax, provincial tax, CPP/QPP, CPP2/QPP2 and EI/QPIP.",
   },
   {
+    href: "/job-offer-comparison",
+    title: "Job Offer Comparison Studio",
+    description:
+      "Compare up to three job offers side by side: net pay, bonuses, employer pension and work costs — the full financial picture.",
+  },
+  {
+    href: "/job-offer-comparison",
+    title: "Job Offer Comparison Studio",
+    description: "Compare up to three offers on net pay, bonuses, employer pension and real costs — not just gross salary.",
+  },
+  {
     href: "/calculators/hourly-to-salary",
     title: "Hourly to Salary Calculator",
     description: "Convert an hourly wage into an annual, monthly and weekly salary — then see the take-home amount.",
