@@ -147,8 +147,8 @@ export function Footer() {
   return (
     <footer className="border-t border-[var(--color-border)] bg-[var(--color-card)] mt-auto">
       <div className="mx-auto sfx-container border-y border-[var(--color-border)] py-10">
-        <div className="grid gap-8 md:grid-cols-4">
-          <div className="col-span-4 md:col-span-1">
+        <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
+          <div className="sm:col-span-2 md:col-span-1">
             <div className="flex items-center gap-2">
               <Image
                 src="/images/canada-maple-leaf.png"
@@ -183,7 +183,7 @@ export function Footer() {
             <h3 className="mb-4 font-semibold text-[var(--color-text-primary)] tracking-tight">
               Provinces &amp; Territories
             </h3>
-            <ul className="grid grid-cols-2 gap-3 text-sm text-[var(--color-text-muted)]">
+            <ul className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm text-[var(--color-text-muted)]">
               {ALL_PROVINCES.map((p) => (
                 <li key={p.code}>
                   <Link href={`/province/${p.code.toLowerCase()}`} className="sfx-link">
@@ -211,7 +211,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-[var(--color-border)] bg-[#F5F7FB] py-6">
-        <div className="mx-auto sfx-container flex flex-col items-center justify-between gap-2 px-4 sm:flex-row sm:items-center">
+        <div className="mx-auto sfx-container flex flex-col items-center justify-between gap-2 sm:flex-row sm:items-center">
           <p className="text-xs text-[var(--color-text-muted)]">
             © {new Date().getFullYear()} Canada Take-Home Pay Calculators.
           </p>

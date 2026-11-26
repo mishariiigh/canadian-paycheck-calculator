@@ -41,7 +41,7 @@ export function SalaryComparisonCalculator() {
           </div>
           <Link
             href="/calculators/take-home-pay"
-            className="sfx-button sfx-button--primary hidden md:block"
+            className="sfx-button sfx-button--primary"
           >
             Open calculator
           </Link>
@@ -56,15 +56,22 @@ export function SalaryComparisonCalculator() {
             and territories for 2026.
           </p>
         </div>
-        <div className="overflow-x-auto">
-          <table className="sfx-table w-full text-sm">
+        <div className="sfx-table-scroll">
+          <table className="sfx-table sfx-table--fixed w-full text-sm">
+            <colgroup>
+              <col style={{ width: "24%" }} />
+              <col style={{ width: "24%" }} />
+              <col style={{ width: "18%" }} />
+              <col style={{ width: "17%" }} />
+              <col style={{ width: "17%" }} />
+            </colgroup>
             <thead>
-              <tr className="border-b border-[var(--color-border)] text-left">
-                <th className="px-4 py-3 font-medium">Province</th>
-                <th className="px-4 py-3 text-right font-medium">Total tax &amp; deductions</th>
-                <th className="px-4 py-3 text-right font-medium">Net annual</th>
-                <th className="px-4 py-3 text-right font-medium">Net monthly</th>
-                <th className="px-4 py-3 text-right font-medium">Avg. rate</th>
+              <tr className="border-b border-[var(--color-border)]">
+                <th className="px-4 py-3">Province</th>
+                <th className="px-4 py-3 text-right">Total tax &amp; deductions</th>
+                <th className="px-4 py-3 text-right">Net annual</th>
+                <th className="px-4 py-3 text-right">Net monthly</th>
+                <th className="px-4 py-3 text-right">Avg. rate</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[var(--color-border)]">

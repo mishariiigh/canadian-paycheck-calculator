@@ -41,7 +41,7 @@ export default function CalculatorsPage() {
           <Link
             key={c.href}
             href={c.href}
-            className="sfx-card p-6 sfx-link hover:border-[var(--color-border-hover)] transition-border"
+            className="sfx-card p-6 sfx-link hover:border-[var(--color-border-hover)] transition-colors h-full flex flex-col"
           >
             <h2 className="text-lg font-semibold text-[var(--color-text-primary)] tracking-tight">
               {c.title}

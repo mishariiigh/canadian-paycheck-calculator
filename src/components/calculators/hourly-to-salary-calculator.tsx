@@ -28,7 +28,7 @@ export function HourlyToSalaryCalculator() {
     <div className="space-y-8">
       <div className="sfx-card p-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div className="grid gap-4 md:grid-cols-5">
+          <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 flex-1">
             <div className="space-y-1">
               <label className="sfx-label">Hourly rate</label>
               <div className="relative">

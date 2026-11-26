@@ -30,7 +30,7 @@ export function TakeHomePayCalculator({
   return (
     <div className="space-y-8">
       <div className="grid gap-6 lg:grid-cols-12">
-        <div className="lg:col-span-4 space-y-6">
+        <div className="lg:col-span-4 space-y-6 min-w-0">
           <div className="sfx-card p-6">
             <h2 className="sfx-h3 mb-5">Your income</h2>
 
@@ -120,7 +120,7 @@ export function TakeHomePayCalculator({
           </div>
         </div>
 
-        <div className="lg:col-span-8 space-y-6">
+        <div className="lg:col-span-8 space-y-6 min-w-0">
           <div className="sfx-card sfx-card--elevated p-6 md:p-8">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
               <div>

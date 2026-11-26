@@ -20,7 +20,7 @@ export default function Home() {
     <div className="space-y-12">
       <section>
         <div className="sfx-card sfx-card--elevated p-8 md:p-12">
-          <div className="sfx-section-head sm:grid sm:grid-cols-2 sm:items-center sm:gap-6">
+          <div className="flex flex-col gap-6 sm:grid sm:grid-cols-2 sm:items-center sm:gap-6">
             <div>
               <span className="sfx-kicker">Canadian Paycheck Calculator</span>
               <h1 className="sfx-h1 mt-2 mb-4 sm:mb-6 sm:text-4xl md:text-5xl">
@@ -33,16 +33,16 @@ export default function Home() {
                 finance ministries.
               </p>
             </div>
-            <div className="mt-6 sm:mt-0 grid gap-3 sm:grid-cols-2">
+            <div className="mt-6 sm:mt-0 grid gap-3 sm:min-w-[20rem]">
               <Link
                 href="/calculators/take-home-pay"
-                className="sfx-button sfx-button--primary w-full py-3 text-center"
+                className="sfx-button sfx-button--primary py-3 text-center"
               >
                 Calculate my take-home pay
               </Link>
               <Link
                 href="/calculators"
-                className="sfx-button sfx-button--secondary w-full py-3 text-center"
+                className="sfx-button sfx-button--secondary py-3 text-center"
               >
                 All calculators
               </Link>
@@ -57,14 +57,20 @@ export default function Home() {
           <h2 className="sfx-h2 mb-0">Net pay across Canada</h2>
         </div>
         <div className="sfx-card overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="sfx-table sfx-table--zebra w-full text-sm">
+          <div className="sfx-table-scroll">
+            <table className="sfx-table sfx-table--zebra sfx-table--fixed w-full text-sm">
+              <colgroup>
+                <col style={{ width: "20%" }} />
+                <col style={{ width: "34%" }} />
+                <col style={{ width: "34%" }} />
+                <col style={{ width: "12%" }} />
+              </colgroup>
               <thead>
-                <tr className="border-b border-[var(--color-border)] text-left">
-                  <th className="px-4 py-3 font-medium">Gross salary</th>
-                  <th className="px-4 py-3 text-right font-medium">Highest net pay</th>
-                  <th className="px-4 py-3 text-right font-medium">Lowest net pay</th>
-                  <th className="px-4 py-3" />
+                <tr className="border-b border-[var(--color-border)]">
+                  <th className="px-4 py-3">Gross salary</th>
+                  <th className="px-4 py-3 text-right">Highest net pay</th>
+                  <th className="px-4 py-3 text-right">Lowest net pay</th>
+                  <th className="px-4 py-3" aria-hidden="true" />
                 </tr>
               </thead>
               <tbody className="divide-y divide-[var(--color-border)]">
@@ -73,13 +79,13 @@ export default function Home() {
                     <td className="px-4 py-3 font-semibold money">{formatCurrency(salary)}</td>
                     <td className="px-4 py-3 text-right">
                       <span className="money">{formatCurrency(best.net)}</span>{" "}
-                      <span className="text-xs text-[var(--color-text-muted)]">
+                      <span className="text-xs text-[var(--color-text-muted)] whitespace-nowrap">
                         ({best.province.name})
                       </span>
                     </td>
                     <td className="px-4 py-3 text-right">
                       <span className="money">{formatCurrency(worst.net)}</span>{" "}
-                      <span className="text-xs text-[var(--color-text-muted)]">
+                      <span className="text-xs text-[var(--color-text-muted)] whitespace-nowrap">
                         ({worst.province.name})
                       </span>
                     </td>
@@ -109,7 +115,7 @@ export default function Home() {
             <Link
               key={p.code}
               href={`/province/${p.code.toLowerCase()}`}
-              className="sfx-card p-5 text-center hover:border-[var(--color-border-hover)] transition-border"
+              className="sfx-card p-5 text-center hover:border-[var(--color-border-hover)] transition-colors"
             >
               <span className="block font-semibold text-[var(--color-text-primary)] tracking-tight">
                 {p.name}

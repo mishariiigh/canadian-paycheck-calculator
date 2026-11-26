@@ -56,9 +56,9 @@ export default async function ProvincePage({ params }: Props) {
           <h2 className="sfx-h3 mb-4">{name} tax brackets ({getTaxYear()})</h2>
           <table className="sfx-table w-full text-sm">
             <thead>
-              <tr className="border-b border-[var(--color-border)] text-left">
-                <th className="px-4 py-3 font-medium">Taxable income</th>
-                <th className="px-4 py-3 text-right font-medium">Rate</th>
+              <tr className="border-b border-[var(--color-border)]">
+                <th className="px-4 py-3">Taxable income</th>
+                <th className="px-4 py-3 text-right">Rate</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[var(--color-border)]">
@@ -95,9 +95,9 @@ export default async function ProvincePage({ params }: Props) {
           <h2 className="sfx-h3 mb-4">Federal brackets ({getTaxYear()})</h2>
           <table className="sfx-table w-full text-sm">
             <thead>
-              <tr className="border-b border-[var(--color-border)] text-left">
-                <th className="px-4 py-3 font-medium">Taxable income</th>
-                <th className="px-4 py-3 text-right font-medium">Rate</th>
+              <tr className="border-b border-[var(--color-border)]">
+                <th className="px-4 py-3">Taxable income</th>
+                <th className="px-4 py-3 text-right">Rate</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[var(--color-border)]">
@@ -130,18 +130,26 @@ export default async function ProvincePage({ params }: Props) {
         <div className="px-6 py-5 border-b border-[var(--color-border)]">
           <h2 className="sfx-h3 mb-0">Take-home pay examples in {name}</h2>
         </div>
-        <div className="overflow-x-auto">
-          <table className="sfx-table w-full text-sm">
-            <thead>
-              <tr className="border-b border-[var(--color-border)] text-left">
-                <th className="px-4 py-3 font-medium">Gross salary</th>
-                <th className="px-4 py-3 text-right font-medium">Total deductions</th>
-                <th className="px-4 py-3 text-right font-medium">Net annual</th>
-                <th className="px-4 py-3 text-right font-medium">Net monthly</th>
-                <th className="px-4 py-3 text-right font-medium">Avg. rate</th>
-                <th className="px-4 py-3" />
-              </tr>
-            </thead>
+        <div className="sfx-table-scroll">
+            <table className="sfx-table sfx-table--fixed w-full text-sm">
+              <colgroup>
+                <col style={{ width: "17%" }} />
+                <col style={{ width: "21%" }} />
+                <col style={{ width: "18%" }} />
+                <col style={{ width: "16%" }} />
+                <col style={{ width: "13%" }} />
+                <col style={{ width: "15%" }} />
+              </colgroup>
+              <thead>
+                <tr className="border-b border-[var(--color-border)]">
+                  <th className="px-4 py-3">Gross salary</th>
+                  <th className="px-4 py-3 text-right">Total deductions</th>
+                  <th className="px-4 py-3 text-right">Net annual</th>
+                  <th className="px-4 py-3 text-right">Net monthly</th>
+                  <th className="px-4 py-3 text-right">Avg. rate</th>
+                  <th className="px-4 py-3" aria-hidden="true" />
+                </tr>
+              </thead>
             <tbody className="divide-y divide-[var(--color-border)]">
               {examples.map(({ salary, result }) => (
                 <tr key={salary}>
@@ -159,7 +167,7 @@ export default async function ProvincePage({ params }: Props) {
                     {formatPercent(result.totals.averageTaxRate, 1)}
                   </td>
                   <td className="px-4 py-3 text-right">
-                    <Link href={takeHomePayUrl(code, salary)} className="sfx-link">
+                    <Link href={takeHomePayUrl(code, salary)} className="sfx-link whitespace-nowrap">
                       Details →
                     </Link>
                   </td>

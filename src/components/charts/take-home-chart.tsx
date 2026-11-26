@@ -33,9 +33,9 @@ export function TakeHomeBarChart({ result }: { result: TaxCalculationResult }) {
           Annual breakdown of gross pay into tax, deductions and net pay.
         </p>
       </div>
-      <div className="px-6 pb-6 h-64">
+      <div className="px-2 pb-4 h-64">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data} margin={{ top: 4, right: 16, left: 4, bottom: 4 }}>
+          <BarChart data={data} margin={{ top: 4, right: 0, left: 0, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#E5EAF1" />
             <XAxis
               dataKey="name"

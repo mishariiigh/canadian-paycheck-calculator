@@ -20,7 +20,7 @@ export function BonusTaxCalculator() {
     <div className="space-y-8">
       <div className="sfx-card p-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div className="grid gap-4 md:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-3 flex-1">
             <div className="space-y-1">
               <label className="sfx-label">Base annual salary</label>
               <div className="relative">
@@ -75,7 +75,12 @@ export function BonusTaxCalculator() {
             marginal rate.
           </p>
         </div>
-        <table className="sfx-table w-full text-sm">
+        <div className="sfx-table-scroll sfx-table-scroll--narrow">
+        <table className="sfx-table sfx-table--fixed w-full text-sm">
+          <colgroup>
+            <col style={{ width: "60%" }} />
+            <col style={{ width: "40%" }} />
+          </colgroup>
           <tbody className="divide-y divide-[var(--color-border)]">
             <tr>
               <td className="px-4 py-3 text-[var(--color-text-secondary)]">Gross bonus</td>
@@ -139,8 +144,9 @@ export function BonusTaxCalculator() {
                 {formatPercent(result.effectiveMarginalRate, 1)}
               </td>
             </tr>
-          </tbody>
+            </tbody>
         </table>
+        </div>
         <p className="mt-5 px-6 py-4 text-xs text-[var(--color-text-muted)] bg-[#F5F7FB] rounded-[var(--radius-md)] border border-[var(--color-border)]">
           Employers may withhold at a flat source-deduction rate during the year; actual tax is
           settled on your return at your marginal rate, which this estimate reflects.

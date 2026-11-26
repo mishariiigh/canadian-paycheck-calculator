@@ -63,6 +63,15 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/*
+ * All custom component styles live in the "components" layer, which Tailwind's
+ * layer order statement (@layer theme, base, components, utilities) puts BEFORE
+ * the utilities layer. Without this, unlayered rules would always beat Tailwind
+ * utilities (unlayered wins over any layer), and utilities such as text-right
+ * on table headers would silently be overridden.
+ */
+@layer components {
+
 html {
   scroll-behavior: smooth;
 }
@@ -241,7 +250,13 @@ body {
   border-collapse: collapse;
 }
 
-.sfx-table th {
+/*
+ * Cell styles are wrapped in :where() so Tailwind alignment/spacing utilities
+ * (text-right, px-4, py-3, …) always win. Without this, the component rule
+ * overrode `text-right` on <th>, leaving numeric headers left-aligned while
+ * their values were right-aligned.
+ */
+.sfx-table :where(th) {
   text-align: left;
   font-size: 0.75rem;
   font-weight: 700;
@@ -252,19 +267,43 @@ body {
   border-bottom: 1px solid var(--color-border);
 }
 
-.sfx-table td {
+.sfx-table :where(td) {
   padding: 0.875rem 1rem;
   border-bottom: 1px solid var(--color-border);
   font-size: 0.95rem;
   color: var(--color-text-primary);
+  vertical-align: top;
 }
 
-.sfx-table tr:last-child td {
+.sfx-table :where(tr:last-child td) {
   border-bottom: none;
 }
 
-.sfx-table--zebra tr:nth-child(even) td {
+.sfx-table--zebra :where(tr:nth-child(even) td) {
   background: rgb(245 247 251 / 0.4);
+}
+
+/*
+ * Fixed-layout table: with a colgroup/width plan, columns cannot shift
+ * between rows and header alignment always matches the data columns.
+ * Column width plans are set per-table via a colgroup (or th widths).
+ */
+.sfx-table--fixed {
+  table-layout: fixed;
+}
+
+/* Scroll wrapper for wide tables on small screens. */
+.sfx-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sfx-table-scroll .sfx-table {
+  min-width: 640px;
+}
+
+.sfx-table-scroll--narrow .sfx-table {
+  min-width: 520px;
 }
 
 .sfx-h1 {
@@ -355,10 +394,19 @@ body {
 /* Section header pattern */
 .sfx-section-head {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
   margin-bottom: 1.5rem;
+}
+
+@media (min-width: 40rem) {
+  .sfx-section-head {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
 }
 
 .sfx-kicker {
@@ -386,3 +434,5 @@ body {
   white-space: nowrap;
   border: 0;
 }
+
+} /* end @layer components */

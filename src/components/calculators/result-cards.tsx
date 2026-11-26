@@ -126,16 +126,24 @@ export function PerPeriodTable({ periods }: { periods: PerPeriodResult[] }) {
           estimates, not actual CRA payroll withholding calculations (T4127).
         </p>
       </div>
-      <div className="overflow-x-auto">
-        <table className="sfx-table w-full text-sm">
+      <div className="sfx-table-scroll">
+        <table className="sfx-table sfx-table--fixed w-full text-sm">
+          <colgroup>
+            <col style={{ width: "22%" }} />
+            <col style={{ width: "15%" }} />
+            <col style={{ width: "16%" }} />
+            <col style={{ width: "15%" }} />
+            <col style={{ width: "15%" }} />
+            <col style={{ width: "17%" }} />
+          </colgroup>
           <thead>
-            <tr className="border-b border-[var(--color-border)] text-left">
-              <th className="px-4 py-3 font-medium">Frequency</th>
-              <th className="px-4 py-3 text-right font-medium">Gross</th>
-              <th className="px-4 py-3 text-right font-medium">Income tax</th>
-              <th className="px-4 py-3 text-right font-medium">Pension</th>
-              <th className="px-4 py-3 text-right font-medium">EI/QPIP</th>
-              <th className="px-4 py-3 text-right font-medium">Net</th>
+            <tr className="border-b border-[var(--color-border)]">
+              <th className="px-4 py-3">Frequency</th>
+              <th className="px-4 py-3 text-right">Gross</th>
+              <th className="px-4 py-3 text-right">Income tax</th>
+              <th className="px-4 py-3 text-right">Pension</th>
+              <th className="px-4 py-3 text-right">EI/QPIP</th>
+              <th className="px-4 py-3 text-right">Net</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-[var(--color-border)]">

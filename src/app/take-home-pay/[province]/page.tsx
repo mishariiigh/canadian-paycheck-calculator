@@ -31,14 +31,14 @@ export default async function TakeHomePayProvinceIndex({ params }: Props) {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-gray-900">{name} Take-Home Pay</h1>
-      <p className="text-gray-600">Pick a salary to see a detailed net pay breakdown:</p>
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
+      <h1 className="sfx-h1">{name} Take-Home Pay</h1>
+      <p className="sfx-text-muted">Pick a salary to see a detailed net pay breakdown:</p>
+      <div className="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4">
         {[30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000, 120000, 150000, 200000, 250000].map((s) => (
           <Link
             key={s}
             href={`/take-home-pay/${province.toLowerCase()}/${s}`}
-            className="rounded-lg border border-gray-200 bg-white p-4 text-center shadow-sm hover:border-blue-400"
+            className="sfx-card p-4 text-center font-semibold text-[var(--color-text-primary)] hover:border-[var(--color-border-hover)] transition-colors"
           >
             ${s.toLocaleString("en-CA")}
           </Link>
